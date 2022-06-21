@@ -2,7 +2,8 @@ import React, {useEffect, useState} from 'react';
 import Gif from './Gif';
 import getGifs from '../services/getGifs';
 
-export default function ListOfGifs ({keyword}) { 
+export default function ListOfGifs ({params}) { 
+    const {keyword} = params;
     const [gifs, setGifs] = useState([]);
 
   // useEffects, permite ejecutar funciones cada vez que se renderice el componente. 
@@ -13,11 +14,15 @@ export default function ListOfGifs ({keyword}) {
     getGifs({ keyword }).then(resp => setGifs(resp));
   }, [keyword]);
 
-    return gifs.map(({title, url, id}) => 
-          <Gif 
-            id={id} 
-            key={id}
-            title={title} 
-            url={url} 
-          />);
+    return (<>
+      {
+        gifs.map(({title, url, id}) => 
+        <Gif 
+          id={id} 
+          key={id}
+          title={title} 
+          url={url} 
+        />)
+      }
+    </>);
 }
