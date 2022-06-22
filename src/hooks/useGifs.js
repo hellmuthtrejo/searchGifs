@@ -1,11 +1,14 @@
 
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import getGifs from '../services/getGifs';
+import GifsContext from '../context/GifsContext';
 
 export  function useGifs ({keyword} = {keyword: null}) {
-  
-    const [gifs, setGifs] = useState([]);
+    
+    
+    // const [gifs, setGifs] = useState([]);
     const [loading, setLoading] = useState(false);
+    const {gifs, setGifs} = useContext(GifsContext);
     
     useEffect(function() {
 
@@ -17,7 +20,7 @@ export  function useGifs ({keyword} = {keyword: null}) {
             setLoading(false);
             localStorage.setItem('lasKeyword', keyword);
         });
-    }, [keyword]);
+    }, [keyword, setGifs]);
 
     // return de custom hook
     return {

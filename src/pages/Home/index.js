@@ -6,6 +6,10 @@ import { useGifs } from '../../hooks/useGifs';
 const POPULAR_GIFS = ["Matrix", "Dragon Ball", "Naruto", "Venezuela"];
 
 export default function Home () {
+
+    // Contexto: es un obj que se puede haceder a el desde cualquier parte del arbol de elementos.
+
+
     const [keyword, setKeyword] = useState('');
     const [path, pushLocation] = useLocation(); // hook de wouter
 
